@@ -20,6 +20,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException, ClassNotFoundException {
 
     	LoginPage loginPage = new LoginPage();
+    	//Portal portal = new Portal();
+    	Portal portal = new TemplatePortal();
+    	Account user = new Nurse("JaneDoe", "123abc", 'd', "Jane", "Doe");
 //    	
 //    	SystemDatabase database = new SystemDatabase();
 //    	database.insertStaff("JaneDoe", "123abc", 'd', "Jane", "Doe");
@@ -31,20 +34,25 @@ public class Main extends Application {
 //    	oos.close();
     	
     	
-    	FileInputStream fis = new FileInputStream("database.ser");
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        SystemDatabase database = (SystemDatabase) ois.readObject();
-        ois.close();
+//    	FileInputStream fis = new FileInputStream("database.ser");
+//        ObjectInputStream ois = new ObjectInputStream(fis);
+//        SystemDatabase database = (SystemDatabase) ois.readObject();
+//        ois.close();
         
 //        System.out.println(database.authenticate("JaneDoe", "123abc"));
         
-    	primaryStage.setHeight(500);
+    	
     	primaryStage.setScene(loginPage.getScene());
     	primaryStage.show();
     	
     	Button loginSubmitButton = loginPage.getButton();
     	loginSubmitButton.setOnAction(new EventHandler<>() {
             public void handle(ActionEvent event) {
+            	user.update("JaneDoe", "123abc", 'd', "Jane", "Doe");
+            	//portal = new TemplatePortal(user);
+            	
+            	primaryStage.setScene(portal.createPortal(user));
+            	primaryStage.centerOnScreen();
 //            	loginPage.autheticna()
 //            	primaryStage.setScene(null);
             }

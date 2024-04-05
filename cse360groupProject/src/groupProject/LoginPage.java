@@ -4,8 +4,7 @@ package groupProject;
 
 
 //import java.awt.Color;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -38,7 +37,7 @@ public class LoginPage {
 	private PasswordField passField;
 	private Label errMsg;
 	private SystemDatabase database;
-	public LoginPage() throws FileNotFoundException {
+	public LoginPage() throws IOException {
       Label userLabel = new Label("Username:");
       Label passLabel = new Label("Password:");
       
@@ -76,27 +75,31 @@ public class LoginPage {
       root.setPadding(new Insets(20, 20, 20, 20));
       
       scene = new Scene(root, 500, 300);
+      
+      FileOutputStream fos = new FileOutputStream("database.ser");
+      ObjectOutputStream oos = new ObjectOutputStream(fos);
+	  oos.writeObject(database);
+	  oos.close();
+      
 	}
 	public Scene getScene() {return scene;}
 	public Button getButton() {return submitButton;}
 	public boolean authenticate() {
-		//TODO: find stuff in authentication database
+		//: find stuff in authentication database
 		if (userField.getText().isBlank() || passField.getText().isBlank()) {
 			errMsg.setText("Username or password is empty!");
 			return false;
 		}
-//		if () {
-//			errMsg.setText("Username or password is invalid!");
-//			return false;
-//		}
+		if (!database.authenticate(userField.getText(), passField.getText())) {
+			errMsg.setText("Username or password is invalid!");
+			return false;
+		}
 		errMsg.setText("");
 		return true;
 	}
-//	public Account getLogin() {
-//		//TODO: get account info from authentication database
-//		
-//		Account a = new Account();
-//		return a;
-//	}
+	public Account getLogin() {
+		// get account info from authentication database
+		return database.getLogin(userField.getText(), passField.getText());
+	}
 	
 }

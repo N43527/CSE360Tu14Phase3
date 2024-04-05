@@ -19,6 +19,12 @@ public class Patient extends Account implements Serializable{
 		perscriptions = new ArrayList<String>();
 		visitHistory = new ArrayList<String>();
 	}
+	public void update(String _username, String _password, char _role, String _firstName, String _lastName, String pn, String email, String allergies) {
+		super.update(_username, _password, _role, _firstName, _lastName);
+		this.phoneNumber = pn;
+		this.email = email;
+		this.allergies = allergies;
+	}
 	public void changeContactInfo(String phoneNumber, String email) {
 		if (!phoneNumber.isBlank()) this.phoneNumber = phoneNumber;
 		if (!email.isBlank()) this.email = email;
