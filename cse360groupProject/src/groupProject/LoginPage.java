@@ -57,6 +57,7 @@ public class LoginPage {
       userSection.setAlignment(Pos.CENTER);
       
       submitButton = new Button("Login");
+      createNewButton = new Button("I Don't Have An Account");
       Label rememberInfoLabel = new Label("Remember my Login");
       CheckBox rememberInfoCheck = new CheckBox();
       HBox rememberSection = new HBox(20);
@@ -70,11 +71,11 @@ public class LoginPage {
       errMsg.setTextFill(Color.RED);
       
       root.getChildren().add(imageView);
-      root.getChildren().addAll(userSection,passSection,rememberSection,errMsg);
+      root.getChildren().addAll(userSection,passSection,rememberSection, createNewButton, errMsg);
       root.setAlignment(Pos.CENTER);
       root.setPadding(new Insets(20, 20, 20, 20));
       
-      scene = new Scene(root, 500, 300);
+      scene = new Scene(root, 500, 400);
       
       FileOutputStream fos = new FileOutputStream("database.ser");
       ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -84,6 +85,7 @@ public class LoginPage {
 	}
 	public Scene getScene() {return scene;}
 	public Button getButton() {return submitButton;}
+	public Button getCreateNewButton() {return createNewButton;}
 	public boolean authenticate() {
 		//: find stuff in authentication database
 		if (userField.getText().isBlank() || passField.getText().isBlank()) {
