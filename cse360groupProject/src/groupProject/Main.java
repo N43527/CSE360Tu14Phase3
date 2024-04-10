@@ -20,6 +20,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException, ClassNotFoundException {
 
     	LoginPage loginPage = new LoginPage();
+        createNewAccountPage createNewAccountPage = new createNewAccountPage();
     	//Portal portal = new Portal();
     	Portal portal = new TemplatePortal();
     	Account user = new Nurse("JaneDoe", "123abc", 'd', "Jane", "Doe");
@@ -46,6 +47,7 @@ public class Main extends Application {
     	primaryStage.show();
     	
     	Button loginSubmitButton = loginPage.getButton();
+        Button loginCreateNewButton = loginPage.getCreateNewButton();
     	loginSubmitButton.setOnAction(new EventHandler<>() {
             public void handle(ActionEvent event) {
             	user.update("JaneDoe", "123abc", 'd', "Jane", "Doe");
@@ -56,6 +58,17 @@ public class Main extends Application {
 //            	loginPage.autheticna()
 //            	primaryStage.setScene(null);
             }
+        });
+        loginCreateNewButton.setOnAction(new EventHandler<>() {
+65
+            public void handle(ActionEvent event) {
+66
+              primaryStage.setScene(createNewAccountPage.getScene());
+67
+              primaryStage.centerOnScreen();
+68
+            }
+69
         });
 //    	Stage stage = new Stage();
 //    	stage.show();
