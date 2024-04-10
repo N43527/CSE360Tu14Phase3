@@ -11,6 +11,7 @@ public class Patient extends Account implements Serializable{
 	private ArrayList<String> visitHistory;
 	private String allergies;
 	private String immunizationRecord;
+	private ArrayList<Message> messages;
 	public Patient(String _username, String _password, char _role, String _firstName, String _lastName, String pn, String email, String allergies) {
 		super(_username, _password, _role, _firstName, _lastName);
 		this.phoneNumber = pn;
@@ -18,6 +19,7 @@ public class Patient extends Account implements Serializable{
 		this.allergies = allergies;
 		perscriptions = new ArrayList<String>();
 		visitHistory = new ArrayList<String>();
+		messages = new ArrayList<Message>();
 	}
 	public void update(String _username, String _password, char _role, String _firstName, String _lastName, String pn, String email, String allergies) {
 		super.update(_username, _password, _role, _firstName, _lastName);
@@ -35,4 +37,5 @@ public class Patient extends Account implements Serializable{
 	public ArrayList<String> getVisitHistory() { return visitHistory; }
 	public String getAllergies() { return allergies; }
 	public String getImmunizationRecord() { return immunizationRecord; }
+	public ArrayList<Message> getMessages() {return messages;}
 }
