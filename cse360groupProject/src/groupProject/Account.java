@@ -1,11 +1,21 @@
 package groupProject;
 
-public abstract class Account {
+import java.io.Serializable;
+
+public class Account implements Serializable{
+	private static final long serialVersionUID = 48998765;
 	private String username;
 	private String password;
 	private char role;
 	public String fName;
 	public String lName;
+	public Account () {
+		username = null;
+		password = null;
+		role = 'u'; //u for undefined
+		fName = null;
+		lName = null;
+	}
 	public Account (String _username, String _password, char _role, String _firstName, String _lastName) {
 		username = _username;
 		password = _password;
