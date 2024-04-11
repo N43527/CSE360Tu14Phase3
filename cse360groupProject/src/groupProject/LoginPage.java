@@ -33,6 +33,7 @@ import javafx.scene.layout.HBox;
 public class LoginPage {
 	private Scene scene;
 	private Button submitButton;
+	private Button createNewButton;
 	private TextField userField;
 	private PasswordField passField;
 	private Label errMsg;
@@ -44,7 +45,7 @@ public class LoginPage {
       userField = new TextField();
       passField = new PasswordField();
                
-      Image image = new Image(new FileInputStream("TPCLogo.png"));
+      Image image = new Image(new FileInputStream("/Users/nivedh/eclipse-workspace/CSE360Tu14Phase3/cse360groupProject/src/groupProject/TPCLogo.png"));
       ImageView imageView = new ImageView(image);
       imageView.setPreserveRatio(true);
       imageView.setFitWidth(200);

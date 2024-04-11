@@ -23,24 +23,24 @@ public class Main extends Application {
         createNewAccountPage createNewAccountPage = new createNewAccountPage();
     	//Portal portal = new Portal();
     	Portal portal = new TemplatePortal();
-    	Account user = new Nurse("JaneDoe", "123abc", 'd', "Jane", "Doe");
-//    	
+    	Account user = new Nurse("JaneDoen", "123abc", 'd', "Jane", "Doe");
+    	
 //    	SystemDatabase database = new SystemDatabase();
-//    	database.insertStaff("JaneDoe", "123abc", 'd', "Jane", "Doe");
+//    	database.insertStaff("JaneDoen", "123abc", 'd', "Jane", "Doe");
 //    	database.insertStaff("JohnSmith", "123abc", 'n', "John", "Smith");
 //    	
-//    	FileOutputStream fos = new FileOutputStream("database.ser");
+//    	FileOutputStream fos = new FileOutputStream("/Users/nivedh/eclipse-workspace/CSE360Tu14Phase3/cse360groupProject/src/database.ser");
 //    	ObjectOutputStream oos = new ObjectOutputStream(fos);
 //    	oos.writeObject(database);
 //    	oos.close();
     	
     	
-//    	FileInputStream fis = new FileInputStream("database.ser");
-//        ObjectInputStream ois = new ObjectInputStream(fis);
-//        SystemDatabase database = (SystemDatabase) ois.readObject();
-//        ois.close();
+    	FileInputStream fis = new FileInputStream("/Users/nivedh/eclipse-workspace/CSE360Tu14Phase3/cse360groupProject/src/database.ser");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        SystemDatabase database1 = (SystemDatabase) ois.readObject();
+        ois.close();
         
-//        System.out.println(database.authenticate("JaneDoe", "123abc"));
+        System.out.println(database1.authenticate("0", "00"));
         
     	
     	primaryStage.setScene(loginPage.getScene());
@@ -60,15 +60,10 @@ public class Main extends Application {
             }
         });
         loginCreateNewButton.setOnAction(new EventHandler<>() {
-65
             public void handle(ActionEvent event) {
-66
               primaryStage.setScene(createNewAccountPage.getScene());
-67
               primaryStage.centerOnScreen();
-68
             }
-69
         });
 //    	Stage stage = new Stage();
 //    	stage.show();

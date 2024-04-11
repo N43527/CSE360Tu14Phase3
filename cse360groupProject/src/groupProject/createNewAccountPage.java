@@ -2,7 +2,10 @@ package groupProject;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -77,7 +80,7 @@ public class createNewAccountPage {
 	      passField = new PasswordField();
 	      confirmPassField = new PasswordField();
 	               
-	      Image image = new Image(new FileInputStream("C:\\Users\\conor\\eclipse-workspace\\project3Windows\\src\\project3Windows\\TPClogo.png"));
+	      Image image = new Image(new FileInputStream("/Users/nivedh/eclipse-workspace/CSE360Tu14Phase3/cse360groupProject/src/groupProject/TPClogo.png"));
 	      ImageView imageView = new ImageView(image);
 	      imageView.setPreserveRatio(true);
 	      imageView.setFitWidth(200);
@@ -112,7 +115,30 @@ public class createNewAccountPage {
 	            @Override
 	            public void handle(ActionEvent event) {
 	                // Call authenticate() method when sign up button is pressed
-	            	createNewAuthenticate();
+	            	if(createNewAuthenticate()) {
+	            		try {
+	            		FileInputStream fis = new FileInputStream("/Users/nivedh/eclipse-workspace/CSE360Tu14Phase3/cse360groupProject/src/database.ser");
+	                    ObjectInputStream ois = new ObjectInputStream(fis);
+	                    SystemDatabase database = (SystemDatabase) ois.readObject();
+	                    ois.close();
+	            		String username = usernameField.getText();
+	            		String firstName = firstNameField.getText();
+	            		String lastName = lastNameField.getText();
+	            		String password = passField.getText();
+	            		String email = emailField.getText();
+	            		String pn = phoneNumberField.getText();
+	            		database.insertPatient(username, password, 'p', firstName, lastName, pn, email, "");
+                        FileOutputStream fos = new FileOutputStream("/Users/nivedh/eclipse-workspace/CSE360Tu14Phase3/cse360groupProject/src/database.ser");
+                        ObjectOutputStream oos = new ObjectOutputStream(fos);
+	                    oos.writeObject(database);
+	                    oos.close();
+	            		} catch(IOException ex){
+	            			ex.printStackTrace();
+	            		} catch (ClassNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+	            	}
 	            }
 	        });
 	      
@@ -142,6 +168,11 @@ public class createNewAccountPage {
   			errMsg.setText("A field is empty!");
   			return false;
   		}
+  		if (!passField.getText().equals(confirmPassField.getText())) {
+  			errMsg.setText("Passwords do not match!");
+  			return false;
+  		}
+  		
   		errMsg.setText("");
   		return true;
       }
@@ -149,4 +180,7 @@ public class createNewAccountPage {
 	//instance of database
 	//verify all fields are filled, error message: not all fields filled
 	//direct to patient portal
+	
+	
+	
 }
