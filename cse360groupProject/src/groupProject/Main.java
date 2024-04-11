@@ -23,7 +23,7 @@ public class Main extends Application {
         createNewAccountPage createNewAccountPage = new createNewAccountPage();
     	//Portal portal = new Portal();
     	Portal portal = new DoctorPortal();
-    	Account user = new Nurse("JaneDoe", "123abc", 'd', "Jane", "Doe");
+    	Account user = new Nurse("JaneDoe", "123abc", 'd', "Jane", "Doe", "May 4, 1999");
     	
     	SystemDatabase database = new SystemDatabase();
     	database.insertStaff("JaneDoe", "123abc", 'd', "Jane", "Doe");
@@ -50,7 +50,7 @@ public class Main extends Application {
         Button loginCreateNewButton = loginPage.getCreateNewButton();
     	loginSubmitButton.setOnAction(new EventHandler<>() {
             public void handle(ActionEvent event) {
-            	user.update("JaneDoe", "123abc", 'd', "Jane", "Doe");
+            	user.update("JaneDoe", "123abc", 'd', "Jane", "Doe", "May 4, 1999");
             	//portal = new TemplatePortal(user);
             	
             	primaryStage.setScene(portal.createPortal(user));
