@@ -21,27 +21,27 @@ public class SystemDatabase implements Serializable{
 			if (a.getUsername().equals(username)) return true;
 		return false;
 	}
-	public boolean insertStaff(String username, String password, char role, String fName, String lName) {
+	public boolean insertStaff(String username, String password, char role, String fName, String lName, String birthday) {
 		if (hasUsername(username))
 			return false;
 		else {
 			Account a;
 			if (role == 'n')
-				a = new Nurse(username, password, role, fName, lName);
+				a = new Nurse(username, password, role, fName, lName, birthday);
 			else
-				a = new Doctor(username, password, role, fName, lName);
+				a = new Doctor(username, password, role, fName, lName, birthday);
 			a.update(username, password, role, fName, lName);
 			accounts.add(a);
 			//messages.add(new ArrayList<Message>());
 		}
 		return false;
 	}
-	public boolean insertPatient(String username, String password, char role, String fName, String lName, String pn, String email, String allergies) {
+	public boolean insertPatient(String username, String password, char role, String fName, String lName, String pn, String email, String allergies, String birthday) {
 		if (hasUsername(username))
 			return false;
 		else {
-			Account a = new Patient(username, password, 'p', fName, lName, pn, email, allergies);
-			Patient p = new Patient(username, password, 'p', fName, lName, pn, email, allergies);
+			Account a = new Patient(username, password, 'p', fName, lName, pn, email, allergies, birthday);
+			Patient p = new Patient(username, password, 'p', fName, lName, pn, email, allergies, birthday);
 			accounts.add(a);
 			patients.add(p);
 		}
