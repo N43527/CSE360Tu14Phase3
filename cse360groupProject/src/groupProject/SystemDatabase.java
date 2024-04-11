@@ -30,7 +30,7 @@ public class SystemDatabase implements Serializable{
 				a = new Nurse(username, password, role, fName, lName, birthday);
 			else
 				a = new Doctor(username, password, role, fName, lName, birthday);
-			a.update(username, password, role, fName, lName);
+			a.update(username, password, role, fName, lName, birthday);
 			accounts.add(a);
 			//messages.add(new ArrayList<Message>());
 		}

@@ -9,6 +9,7 @@ public class Account implements Serializable{
 	private char role;
 	public String fName;
 	public String lName;
+	public String birthday;
 	public Account () {
 		username = null;
 		password = null;

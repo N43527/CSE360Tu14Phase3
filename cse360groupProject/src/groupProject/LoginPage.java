@@ -78,17 +78,21 @@ public class LoginPage {
       
       scene = new Scene(root, 500, 400);
       
-      FileOutputStream fos = new FileOutputStream("database.ser");
-      ObjectOutputStream oos = new ObjectOutputStream(fos);
-	  oos.writeObject(database);
-	  oos.close();
+//      FileOutputStream fos = new FileOutputStream("database.ser");
+//      ObjectOutputStream oos = new ObjectOutputStream(fos);
+//	  oos.writeObject(database);
+//	  oos.close();
       
 	}
 	public Scene getScene() {return scene;}
 	public Button getButton() {return submitButton;}
 	public Button getCreateNewButton() {return createNewButton;}
-	public boolean authenticate() {
+	public boolean authenticate() throws IOException, ClassNotFoundException {
 		//: find stuff in authentication database
+    	FileInputStream fis = new FileInputStream("/Users/nivedh/eclipse-workspace/CSE360Tu14Phase3/cse360groupProject/src/database.ser");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        SystemDatabase database = (SystemDatabase) ois.readObject();
+        ois.close();
 		if (userField.getText().isBlank() || passField.getText().isBlank()) {
 			errMsg.setText("Username or password is empty!");
 			return false;

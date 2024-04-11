@@ -127,7 +127,7 @@ public class createNewAccountPage {
 	            		String password = passField.getText();
 	            		String email = emailField.getText();
 	            		String pn = phoneNumberField.getText();
-	            		database.insertPatient(username, password, 'p', firstName, lastName, pn, email, "");
+	            		database.insertPatient(username, password, 'p', firstName, lastName, pn, email, "", "");
                         FileOutputStream fos = new FileOutputStream("/Users/nivedh/eclipse-workspace/CSE360Tu14Phase3/cse360groupProject/src/database.ser");
                         ObjectOutputStream oos = new ObjectOutputStream(fos);
 	                    oos.writeObject(database);
