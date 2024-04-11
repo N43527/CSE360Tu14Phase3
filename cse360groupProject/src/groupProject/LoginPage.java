@@ -100,8 +100,12 @@ public class LoginPage {
 		errMsg.setText("");
 		return true;
 	}
-	public Account getLogin() {
+	public Account getLogin() throws IOException, ClassNotFoundException {
 		// get account info from authentication database
+    	FileInputStream fis = new FileInputStream("/Users/nivedh/eclipse-workspace/CSE360Tu14Phase3/cse360groupProject/src/database.ser");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        SystemDatabase database = (SystemDatabase) ois.readObject();
+        ois.close();
 		return database.getLogin(userField.getText(), passField.getText());
 	}
 	

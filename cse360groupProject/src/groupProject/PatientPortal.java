@@ -29,7 +29,7 @@ public class PatientPortal extends Portal {
     	Label name = new Label("Name: " + user.getFName() + " " + user.getLName());
     	pane.add(name, 1, 2);
     	
-    	Label birthday = new Label("Birthday: " + user.getBirthday());
+    	Label birthday = new Label("Birthday: " + "hello");
     	pane.add(birthday, 1, 3);
     	
     	Label pharmacy = new Label("Pharmacy: Pharmacy B");
