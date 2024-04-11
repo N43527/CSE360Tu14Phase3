@@ -151,6 +151,12 @@ public class DoctorPortal extends Portal {
         message.setPrefHeight(25);
         message.setStyle("-fx-background-color: black; -fx-text-fill: white;");
         grid.add(message, 25, 19,1,1);
+
+	Button submitrecommendation = new Button("Submit Recommendation");
+        submitrecommendation.setPrefWidth(200);
+        submitrecommendation.setPrefHeight(25);
+        submitrecommendation.setStyle("-fx-background-color: black; -fx-text-fill: white;");
+        grid.add(submitprescription, 25, 21,1,1);
         
 		scene = new Scene(grid,1280,720);
 		return scene;
