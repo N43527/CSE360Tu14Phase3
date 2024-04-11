@@ -30,6 +30,12 @@ public class Patient extends Account implements Serializable{
 	public void updateVisits(String physTest) {
 		this.visitHistory.add(physTest);
 	}
+	public void updateVaccinations(String recommendation) {
+		this.immunizationRecord += recommendation;
+	}
+	public void updatePrescription(String prescription) {
+		this.perscriptions.add(prescription);
+	}
 	public void changeContactInfo(String phoneNumber, String email) {
 		if (!phoneNumber.isBlank()) this.phoneNumber = phoneNumber;
 		if (!email.isBlank()) this.email = email;

@@ -51,6 +51,11 @@ public class Main extends Application {
     	Button loginSubmitButton = loginPage.getButton();
         Button loginCreateNewButton = loginPage.getCreateNewButton();
         
+//        Button submitForm = doctorPortal.getsubmitFormButton();
+        Button getsubmitprescriptionButton = doctorPortal.getsubmitprescriptionButton();
+        Button getsubmitrecommendationsButton = doctorPortal.getsubmitrecommendationsButton();
+        Button getmessageButton = doctorPortal.getmessageButton();
+        
     	loginSubmitButton.setOnAction(new EventHandler<>() {
             public void handle(ActionEvent event) {
 //            	user.update("JaneDoe", "123abc", 'd', "Jane", "Doe", "May 4, 1999");
@@ -93,11 +98,86 @@ public class Main extends Application {
             }
         });
         
-//        doctorPortal.getsubmitFormButton().setOnAction(new EventHandler<>() {
-//            public void handle(ActionEvent event) {
-//              // update the user's info
-//            }
-//        });
+        
+        getsubmitrecommendationsButton.setOnAction(new EventHandler<>() {
+            public void handle(ActionEvent event) {
+//            	System.out.println("hi");
+              // update the user's info
+            	String username = "";
+            	try {
+            	username = doctorPortal.getName();
+            	FileInputStream fis = new FileInputStream("/Users/nivedh/eclipse-workspace/CSE360Tu14Phase3/cse360groupProject/src/database.ser");
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                SystemDatabase database = (SystemDatabase) ois.readObject();
+                ois.close();
+            	} catch (IOException ex){
+            		
+            	} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            	
+            	Patient patient = database.getPatient(username);
+            	patient.updateVaccinations(doctorPortal.getRecommendations());
+            	
+            	doctorPortal.setVaccinations(doctorPortal.getRecommendations());
+            	
+            	try { 
+            	FileOutputStream fos = new FileOutputStream("/Users/nivedh/eclipse-workspace/CSE360Tu14Phase3/cse360groupProject/src/database.ser");
+            	ObjectOutputStream oos = new ObjectOutputStream(fos);
+            	oos.writeObject(database);
+            	oos.close();
+            	} 
+            	catch (IOException ex){
+            		
+            	}
+            }
+        });
+        
+        getsubmitprescriptionButton.setOnAction(new EventHandler<>() {
+            public void handle(ActionEvent event) {
+//            	System.out.println("hi");
+              // update the user's info
+            	String username = "";
+            	try {
+            	username = doctorPortal.getName();
+            	FileInputStream fis = new FileInputStream("/Users/nivedh/eclipse-workspace/CSE360Tu14Phase3/cse360groupProject/src/database.ser");
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                SystemDatabase database = (SystemDatabase) ois.readObject();
+                ois.close();
+            	} catch (IOException ex){
+            		
+            	} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            	
+            	Patient patient = database.getPatient(username);
+            	String prescription = "";
+            	prescription += doctorPortal.getName() + " ";
+            	prescription += doctorPortal.getPurpose() + " ";
+            	prescription += doctorPortal.getDosage() + " ";
+            	prescription += doctorPortal.getStart() + " ";
+            	prescription += doctorPortal.getEnd() + " ";
+            	prescription += doctorPortal.getInstruction() + " ";
+            	patient.updatePrescription(prescription);
+            	
+            	patient.updateVisits(doctorPortal.getPhysTest());
+            	
+            	doctorPortal.setPrescription(prescription);
+            	doctorPortal.setVisit(doctorPortal.getPhysTest());
+            	
+            	try { 
+            	FileOutputStream fos = new FileOutputStream("/Users/nivedh/eclipse-workspace/CSE360Tu14Phase3/cse360groupProject/src/database.ser");
+            	ObjectOutputStream oos = new ObjectOutputStream(fos);
+            	oos.writeObject(database);
+            	oos.close();
+            	} 
+            	catch (IOException ex){
+            		
+            	}
+            }
+        });
 //    	Stage stage = new Stage();
 //    	stage.show();
     }
