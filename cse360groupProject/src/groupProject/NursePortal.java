@@ -11,7 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.*;
 
-public class nursePortal extends Portal {
+public class NursePortal extends Portal {
     private Account user;
 
     public Scene createPortal(Account newUser) {
