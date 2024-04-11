@@ -4,6 +4,7 @@ package groupProject;
 
 import javafx.scene.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
@@ -13,6 +14,11 @@ import javafx.scene.text.Text;
 
 public class DoctorPortal extends Portal {
 	private Account user;
+	private Button submitForm;
+	private Button submitprescription;
+	private Button submitrecommendations;
+	private Button message;
+	
 	public Scene createPortal(Account newUser) {
 		this.user = newUser;
 		
@@ -36,11 +42,11 @@ public class DoctorPortal extends Portal {
         TextField physicaltestbox = new TextField();
         grid.add(physicaltestbox, 1, 6,1,1);
         
-        Button submitform = new Button("Submit");
-        submitform.setPrefWidth(75);
-        submitform.setPrefHeight(25);
-        submitform.setStyle("-fx-background-color: black; -fx-text-fill: white;");
-        grid.add(submitform, 1, 7,1,1);
+        submitForm = new Button("Submit");
+        submitForm.setPrefWidth(75);
+        submitForm.setPrefHeight(25);
+        submitForm.setStyle("-fx-background-color: black; -fx-text-fill: white;");
+        grid.add(submitForm, 1, 7,1,1);
         
         Text prescription = new Text("Enter the prescription information below: ");
         prescription.setFont(Font.font("Tahoma", FontWeight.NORMAL, 15));
@@ -89,7 +95,7 @@ public class DoctorPortal extends Portal {
         TextField instructionbox = new TextField();
         grid.add(instructionbox, 1, 20,1,1);
         
-        Button submitprescription = new Button("Submit Prescription");
+        submitprescription = new Button("Submit Prescription");
         submitprescription.setPrefWidth(200);
         submitprescription.setPrefHeight(25);
         submitprescription.setStyle("-fx-background-color: black; -fx-text-fill: white;");
@@ -104,11 +110,11 @@ public class DoctorPortal extends Portal {
         recomendationsbox.setPrefWidth(500);
         grid.add(recomendationsbox, 25, 17,1,1);
         
-        Button submitrecomendations = new Button("Submit Recomendations");
-        submitrecomendations.setPrefWidth(200);
-        submitrecomendations.setPrefHeight(25);
-        submitrecomendations.setStyle("-fx-background-color: black; -fx-text-fill: white;");
-        grid.add(submitrecomendations, 25, 25,1,1);
+//        Button submitrecomendations = new Button("Submit Recomendations");
+//        submitrecomendations.setPrefWidth(200);
+//        submitrecomendations.setPrefHeight(25);
+//        submitrecomendations.setStyle("-fx-background-color: black; -fx-text-fill: white;");
+//        grid.add(submitrecomendations, 25, 25,1,1);
         
         Text currentprescriptions = new Text("Current Prescriptions: ");
         currentprescriptions.setFont(Font.font("Tahoma", FontWeight.NORMAL, 15));
@@ -146,19 +152,24 @@ public class DoctorPortal extends Portal {
         knownallergiesbox.setPrefWidth(50);
         grid.add(knownallergiesbox, 25, 13,1,1);
         
-        Button message = new Button("Message Patient");
+        message = new Button("Message Patient");
         message.setPrefWidth(200);
         message.setPrefHeight(25);
         message.setStyle("-fx-background-color: black; -fx-text-fill: white;");
         grid.add(message, 25, 20,1,1);
 
-	Button submitrecommendation = new Button("Submit Recommendation");
-        submitrecommendation.setPrefWidth(200);
-        submitrecommendation.setPrefHeight(25);
-        submitrecommendation.setStyle("-fx-background-color: black; -fx-text-fill: white;");
-        grid.add(submitrecommendation, 25, 19,1,1);
+        submitrecommendations = new Button("Submit Recommendation");
+        submitrecommendations.setPrefWidth(200);
+        submitrecommendations.setPrefHeight(25);
+        submitrecommendations.setStyle("-fx-background-color: black; -fx-text-fill: white;");
+        grid.add(submitrecommendations, 25, 19,1,1);
         
 		scene = new Scene(grid,1280,720);
 		return scene;
 	}
+	
+	public Button getsubmitFormButton() {return submitForm;}
+	public Button getsubmitprescriptionButton() {return submitprescription;}
+	public Button getsubmitrecommendationsButton() {return submitrecommendations;}
+	public Button getmessageButton() {return message;}
 }

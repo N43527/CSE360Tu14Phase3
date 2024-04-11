@@ -27,6 +27,9 @@ public class Patient extends Account implements Serializable{
 		this.email = email;
 		this.allergies = allergies;
 	}
+	public void updateVisits(String physTest) {
+		this.visitHistory.add(physTest);
+	}
 	public void changeContactInfo(String phoneNumber, String email) {
 		if (!phoneNumber.isBlank()) this.phoneNumber = phoneNumber;
 		if (!email.isBlank()) this.email = email;

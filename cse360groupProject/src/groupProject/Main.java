@@ -50,6 +50,7 @@ public class Main extends Application {
     	
     	Button loginSubmitButton = loginPage.getButton();
         Button loginCreateNewButton = loginPage.getCreateNewButton();
+        
     	loginSubmitButton.setOnAction(new EventHandler<>() {
             public void handle(ActionEvent event) {
 //            	user.update("JaneDoe", "123abc", 'd', "Jane", "Doe", "May 4, 1999");
@@ -91,6 +92,12 @@ public class Main extends Application {
               primaryStage.centerOnScreen();
             }
         });
+        
+//        doctorPortal.getsubmitFormButton().setOnAction(new EventHandler<>() {
+//            public void handle(ActionEvent event) {
+//              // update the user's info
+//            }
+//        });
 //    	Stage stage = new Stage();
 //    	stage.show();
     }
